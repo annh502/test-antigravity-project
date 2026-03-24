@@ -1,14 +1,28 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 
-# Cài đặt các công cụ cơ bản
-RUN apt-get update && apt-get install -y curl git gnupg2 jq sudo zsh && apt-get clean
+# Basic tools
+RUN apt-get update && apt-get install -y \
+    curl git gnupg2 jq sudo zsh \
+    python3 python3-pip \
+    openjdk-17-jdk maven \
+    && apt-get clean
 
-# Cài đặt Python
-RUN apt-get install -y python3 python3-pip
-
-# Cài đặt Node.js 20
+# Node.js 20
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-# Cài đặt Java 17 (OpenJDK) và Maven
-RUN apt-get install -y openjdk-17-jdk maven
+# Docker CLI + Docker-in-Docker setup
+RUN apt-get install -y ca-certificates lsb-release && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg \
+      | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] \
+      https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+      > /etc/apt/sources.list.d/docker.list && \
+    apt-get update && apt-get install -y \
+      docker-ce docker-ce-cli containerd.io docker-compose-plugin \
+    && apt-get clean
+
+# Allow vscode user to use Docker without sudo
+RUN usermod -aG docker vscode
+
+USER vscode

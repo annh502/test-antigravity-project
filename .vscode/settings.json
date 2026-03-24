@@ -1,5 +1,6 @@
 {
   "files.associations": {
     "devcontainer.*.json": "jsonc"
-  }
+  },
+  "java.compile.nullAnalysis.mode": "automatic"
 }
