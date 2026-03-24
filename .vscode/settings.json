@@ -1,0 +1,5 @@
+{
+  "files.associations": {
+    "devcontainer.*.json": "jsonc"
+  }
+}

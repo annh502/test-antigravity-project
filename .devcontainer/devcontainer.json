@@ -1,0 +1,47 @@
+{
+  "name": "Fullstack AI Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": { "installZsh": true },
+    "ghcr.io/devcontainers/features/java:1": { "version": "17" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "20" },
+    "ghcr.io/devcontainers/features/python:1": { "version": "3.11" }
+  },
+  "containerEnv": {
+    "APP_ENV": "development",
+    "DB_PASSWORD": "mock_password_for_agent"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "always",
+          "source.organizeImports": "always" 
+        }
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "redhat.java",
+        "vscjava.vscode-java-pack",
+        "vmware.vscode-spring-boot",
+
+        "vue.volar",
+        "vue.vscode-typescript-vue-plugin",
+
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "redhat.vscode-xml"
+      ]
+    }
+  },
+  "runArgs": ["--cap-drop=ALL"],
+  "forwardPorts": [8080, 5173, 8000],
+  "remoteUser": "vscode"
+}

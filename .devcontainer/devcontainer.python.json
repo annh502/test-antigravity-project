@@ -1,0 +1,35 @@
+{
+  "name": "Python Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.12-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "${workspaceFolder}/backend/venv/bin/python",
+        "python.analysis.typeCheckingMode": "basic",
+        "editor.formatOnSave": true,
+        "remote.autoForwardPorts": false,
+        "remote.forwardOnOpen": false
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "mechatroner.rainbow-csv"
+      ]
+    }
+  },
+  "postCreateCommand": "pip install --no-cache-dir pandas && (pip install --no-cache-dir -r requirements.txt || true)",
+  "postAttachCommand": "bash restart_app.sh",
+  "forwardPorts": [
+    8000
+  ],
+  "remoteUser": "vscode"
+}
