@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: lms
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:lms_db}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  liquibase:
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+# JWT Config
+jwt:
+  # Generate a secure key, e.g., with "openssl rand -base64 64" (this is just dev placeholder)
+  secret: ${JWT_SECRET:4a25883d3e236fb6444583151fa47ad6a14352f207ed1c183020625d97e20ec4d6ce1922c069527ec354cdec7ab66dd39b98ff0cda631e80eed5ec6cb4fae5c3}
+  expiration: 86400000 # 24 hours in milliseconds
