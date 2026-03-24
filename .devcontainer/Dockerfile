@@ -10,5 +10,5 @@ RUN apt-get install -y python3 python3-pip
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-# Cài đặt Java 17 (OpenJDK)
-RUN apt-get install -y openjdk-17-jdk
+# Cài đặt Java 17 (OpenJDK) và Maven
+RUN apt-get install -y openjdk-17-jdk maven

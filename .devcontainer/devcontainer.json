@@ -3,6 +3,9 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
   "containerEnv": {
     "APP_ENV": "development",
     "DB_PASSWORD": "mock_password_for_agent"
